@@ -1,7 +1,4 @@
 import Image from "next/image";
-import { FcGoogle } from "react-icons/fc";
-import { FaApple, FaFacebook, FaGoogle } from "react-icons/fa";
-import { signIn, useSession} from 'next-auth/react'
 import Link from "next/link";
 import { useDispatch } from "react-redux";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -48,12 +45,6 @@ const Login = () => {
       }
     }
 
-  const handleGoogleSignin = async ()=> {
-    await signIn('google', {
-      redirect: true,
-      callbackUrl: '/'
-    })
-  }
     return (
       <div className="flex min-h-screen">
         {/* Left Section - Login Form */}
