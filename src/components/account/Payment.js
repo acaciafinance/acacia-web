@@ -54,32 +54,7 @@ const Payment = () => {
         const validateAccount = async () => {
           if (accountNumber.length === 10 && bankName && bankCode) {
             setIsLoading(true);
-            // try {
-            //   const response = await axios.post(
-            //     apiUrl,
-            //     {
-            //       account_number: accountNumber,
-            //       account_bank: bankCode,
-            //     },
-            //     {
-            //       headers: {
-            //         Authorization: "Bearer FLWSECK-39cc7683d231c4d18890ab199cb67f1d-18cf9942a62vt-X",
-            //         "Content-Type": "application/json",
-            //       },
-            //     }
-            //   );
-      
-            //   if (response.data.status) {
-            //     setAccountName(response.data.data.account_name);
-            //     setFetchErrorMsg(null);
-            //   } else {
-            //     setFetchErrorMsg("Account validation failed. Enter Account name manually.");
-            //   }
-            // } catch (error) {
-            //   setFetchErrorMsg("Could not validate account. Try again later.");
-            // } finally {
-            //   setIsLoading(false);
-            // }
+            
             try {
                 
                 const response = await axios.post('/api/verifybank', {
