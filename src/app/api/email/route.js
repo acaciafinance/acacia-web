@@ -6,7 +6,7 @@ export const POST = async(req)=> {
 
     try {
 
-        const logoUrl = `${process.env.URL}/assets/logo/acacia-white.png`;
+        const logoUrl = `${process.env.CLIENTURL}/assets/logo/acacia-white.png`;
         await sendContactEmail(name, email, message, subject, logoUrl)
 
         return NextResponse.json({message: "Email sent successfully"}, { status: 200 });
