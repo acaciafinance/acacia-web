@@ -7,7 +7,7 @@ import { banks } from "./data/bankData";
 import axios from "axios";
 
 
-const Payment = () => {
+const Payment = ({paymentData}) => {
     const [bankName, setBankName] = useState("");
     const [accountNumber, setAccountNumber] = useState("");
     const [accountName, setAccountName] = useState("");
@@ -18,6 +18,7 @@ const Payment = () => {
     const [searchQuery, setSearchQuery] = useState("");
     const [filteredBanks, setFilteredBanks] = useState(banks);
     const [showDropdown, setShowDropdown] = useState(false);
+
 
     const handleSearch = (query) => {
         setSearchQuery(query);
@@ -48,7 +49,7 @@ const Payment = () => {
     const bankCode = findCodeByName(bankName);
     // const apiUrl = `https://api.paystack.co/bank/resolve?account_number=${accountNumber}&bank_code=${bankCode}`;
     const apiUrl = `https://api.flutterwave.com/v3/accounts/resolve`
-    console.log(bankCode)
+    // console.log(bankCode)
 
     useEffect(() => {
         const validateAccount = async () => {
@@ -112,10 +113,28 @@ const Payment = () => {
         }
     };
 
-    const paymentData = [
-        { id: 1, type: "Deposit", amount: "$500", date: "2024-10-01" },
-        { id: 2, type: "Settlement", amount: "$300", date: "2024-10-15" },
-    ];
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+    
+        // Get day, month (short), year, hours, and minutes
+        const day = date.getUTCDate();
+        const month = date.toLocaleString('en-US', { month: 'short', timeZone: 'UTC' });
+        const year = date.getUTCFullYear();
+    
+        let hours = date.getUTCHours();
+        const minutes = date.getUTCMinutes().toString().padStart(2, '0');
+        const amOrPm = hours >= 12 ? 'PM' : 'AM';
+    
+        // Convert 24-hour format to 12-hour format
+        hours = hours % 12 || 12;
+    
+        return `${day} ${month} ${year}, ${hours}:${minutes} ${amOrPm}`;
+    }
+
+    // const paymentData = [
+    //     { id: 1, type: "Deposit", amount: "$500", date: "2024-10-01" },
+    //     { id: 2, type: "Settlement", amount: "$300", date: "2024-10-15" },
+    // ];
 
     return (
         <div className="p-4 bg-white shadow-md rounded-md">
@@ -124,24 +143,36 @@ const Payment = () => {
             {/* Payment Table */}
             <div className="mb-6">
                 <h3 className="text-lg font-semibold text-gray-800">Transaction History</h3>
-                <table className="w-full mt-4 border">
-                    <thead className="bg-blue-900 text-white">
-                        <tr>
-                            <th className="p-2">Type</th>
-                            <th className="p-2">Amount</th>
-                            <th className="p-2">Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {paymentData.map(transaction => (
-                            <tr key={transaction.id} className="border-b">
-                                <td className="p-2 text-center">{transaction.type}</td>
-                                <td className="p-2 text-center">{transaction.amount}</td>
-                                <td className="p-2 text-center">{transaction.date}</td>
+                {paymentData && paymentData.length > 0 ? (
+                    <table className="w-full mt-4 border">
+                        <thead className="bg-blue-900 text-white">
+                            <tr>
+                                <th className="p-2">Type</th>
+                                <th className="p-2">Amount</th>
+                                <th className="p-2">Date</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {paymentData.map(transaction => (
+                                <tr key={transaction._id} className="border-b">
+                                    <td className="p-2 text-center">{transaction?.type}</td>
+                                    <td className="p-2 text-center">&#8358;{transaction.amount}</td>
+                                    <td className="p-2 text-center">{formatDate(transaction.createdAt)}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                ) : (
+                    <div className="text-center mt-6">
+                        <p className="text-gray-600">No payment record found.</p>
+                        <button 
+                            className="mt-4 bg-indigo-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300"
+                            onClick={startTransaction} // Replace this with your transaction initiation function
+                        >
+                            Start a Transaction
+                        </button>
+                    </div>
+                )}
             </div>
 
             {/* Disbursement Account Details */}

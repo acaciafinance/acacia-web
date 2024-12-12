@@ -1,14 +1,14 @@
 import { useState } from "react";
 
-const UserProfile = () => {
+const UserProfile = ({userData}) => {
     // State to handle edit mode and sample user data
     const [isEditing, setIsEditing] = useState(false);
     const [user, setUser] = useState({
-      name: "John Doe",
-      email: "johndoe@example.com",
-      phone: "123-456-7890",
-      address: "123 Main Street",
-      tier: "Basic", // Possible tiers: Basic, Verified, Premium
+      name: userData.fullName,
+      email: userData.email,
+      // phone: "123-456-7890",
+      // address: "123 Main Street",
+      // tier: "Basic", // Possible tiers: Basic, Verified, Premium
     });
   
     // Toggle edit mode
@@ -67,7 +67,7 @@ const UserProfile = () => {
             )}
           </div>
   
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700">Phone</label>
             {isEditing ? (
               <input
@@ -80,9 +80,9 @@ const UserProfile = () => {
             ) : (
               <p className="mt-1 text-gray-800">{user.phone}</p>
             )}
-          </div>
+          </div> */}
   
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700">Address</label>
             {isEditing ? (
               <input
@@ -95,10 +95,10 @@ const UserProfile = () => {
             ) : (
               <p className="mt-1 text-gray-800">{user.address}</p>
             )}
-          </div>
+          </div> */}
   
           {/* User Tier and Verification */}
-          <div>
+          {/* <div>
             <label className="block text-sm font-medium text-gray-700">Account Tier</label>
             <p className="mt-1 text-gray-800">
               {user.tier}
@@ -111,7 +111,7 @@ const UserProfile = () => {
                 </button>
               )}
             </p>
-          </div>
+          </div> */}
         </div>
   
         {/* Edit and Save Buttons */}

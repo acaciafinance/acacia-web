@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistor, store } from "@/redux/store";
 import Head from "next/head";
-import { SessionProvider } from "next-auth/react";
+// import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({ 
@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         </title> */}
       </head>
       <body className={poppins.className}>
-        <SessionProvider>
+        {/* <SessionProvider> */}
           <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
               {/* <NextAuthProvider> */}
@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
             </PersistGate>
           </Provider>
 
-        </SessionProvider>
+        {/* </SessionProvider> */}
       </body>
     </html>
   );

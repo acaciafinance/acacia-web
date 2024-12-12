@@ -1,21 +1,46 @@
 'use client'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Layout from "../template/Layout";
 import UserProfile from "./UserProfile";
 import Payment from "./Payment";
 import Security from "./Security";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { getUserPaymentHistory } from "@/redux/apiCalls";
 
 const Account = () => {
     // State to track the active tab
     const [activeTab, setActiveTab] = useState("profile");
+    const [paymentData, setPaymentData]= useState(null)
+    const userData = useSelector(state => state.user.info)
+    const router = useRouter()
+
+    useEffect(()=> {
+      const getPayment = async ()=> {
+        try {
+          const res = await getUserPaymentHistory(userData._id)
+          setPaymentData(res)
+          console.log(res)
+        } catch (error) {
+          console.log(error)
+        }
+      }
+
+      getPayment()
+    }, [userData])
+
+    if(!userData) {
+      router.push('/home')
+      return;
+    }
   
     // Function to render the active tab content
     const renderTabContent = () => {
       switch (activeTab) {
         case "profile":
-          return <UserProfile />;
+          return <UserProfile userData={userData} />;
         case "payments":
-          return <Payment />;
+          return <Payment paymentData={paymentData} />;
         case "security":
           return <Security />;
         default:

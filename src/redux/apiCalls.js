@@ -130,5 +130,14 @@ export const initiateTransfer = async (transferData) => {
     }
 };
 
+export const getUserPaymentHistory = async(userId)=> {
+    try {
+        const res = await publicRequest.get(`finance/history/${userId}`)
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
 
