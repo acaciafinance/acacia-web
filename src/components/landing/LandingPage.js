@@ -100,36 +100,7 @@ const LandingPage = () => {
             </div>
         </header>
 
-      {/* Products Section */}
-      <section id="products" className="py-20 bg-gray-100">
-        <div className="max-w-6xl mx-auto px-6">
-          <h2 className="text-3xl font-semibold text-center text-gray-800 mb-10">Explore Our Solutions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {products.map((product, index) => (
-              <div
-                key={index}
-                className="p-6 bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow"
-                onClick={() => setSelectedProduct(product)}
-              >
-                <div className="flex justify-center mb-4">
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={100}
-                    height={100}
-                    className="w-auto h-20 object-contain"
-                  />
-                </div>
-                <h3 className="text-xl font-bold text-teal-700 mb-2">{product.name}</h3>
-                <p className="text-gray-600">{product.summary}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Product Modal */}
-      {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
+      
 
 
 
@@ -195,6 +166,39 @@ const LandingPage = () => {
                 </div>
             </div>
         </section>
+
+
+
+        {/* Products Section */}
+      <section id="products" className="py-20 bg-gray-100">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-semibold text-center text-gray-800 mb-10">Explore Our Solutions</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((product, index) => (
+              <div
+                key={index}
+                className="p-6 bg-white rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-shadow"
+                onClick={() => setSelectedProduct(product)}
+              >
+                <div className="flex justify-center mb-4">
+                  <Image
+                    src={product.image}
+                    alt={product.name}
+                    width={100}
+                    height={100}
+                    className="w-auto h-20 object-contain"
+                  />
+                </div>
+                <h3 className="text-xl font-bold text-teal-700 mb-2">{product.name}</h3>
+                <p className="text-gray-600">{product.summary}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Product Modal */}
+      {selectedProduct && <ProductModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
 
       {/* Section 3: Testimonials */}
       {/* <section id="testimonials" className="py-20 bg-white">
