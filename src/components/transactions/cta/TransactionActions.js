@@ -32,7 +32,7 @@ const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
     // console.log(sellerAccountStatus)
 
     const config = {
-        public_key: "FLWPUBK_TEST-3d57a275d12cc017fc463fd1b36e2a0b-X",
+        public_key: "FLWPUBK-59d89542e1f64ffd9f40b75a01ec8950-X",
         tx_ref: Date.now(),
         amount: amount,
         currency: "NGN",
