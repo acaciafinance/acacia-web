@@ -134,7 +134,7 @@ const InviteUserForm = ({info, setToPayFee, setEmail, onStart, setCurrentStep, i
                 </td>
               </tr>
               <tr className="hover:bg-indigo-50 transition-colors duration-200">
-                <td className="py-4 px-6 text-gray-700 text-lg">Seller Proceeds</td>
+                <td className="py-4 px-6 text-gray-700 text-lg">Seller to receive</td>
                 <td className="py-4 px-6 font-semibold text-gray-900 text-lg">₦{info.price}</td>
               </tr>
             </tbody>
