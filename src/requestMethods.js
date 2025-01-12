@@ -2,7 +2,8 @@ import axios from "axios"
 
 // export const apiUrl = 'http://localhost:5000/api/'
 export const apiUrl = 'https://us-central1-acacia-94abb.cloudfunctions.net/api/api'
-export const URL = 'http://localhost:3000'
+// export const URL = 'http://localhost:3000'
+export const URL = 'https://acaciafinance.net'
 
 
 let gg = ""
