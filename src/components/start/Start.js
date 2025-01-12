@@ -95,7 +95,7 @@ const Start = () => {
 
 
 
-  const feePercentage = 1.5; // 1.5% fee
+  const feePercentage = 1; // 1.5% fee
   const fee = (info?.price * feePercentage) / 100;
 
 
