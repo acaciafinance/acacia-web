@@ -1,6 +1,6 @@
 import React from 'react'
 
-const InviteUserForm = ({info, setToPayFee, setEmail, onStart, setCurrentStep, isSubmitting}) => {
+const InviteUserForm = ({info, setToPayFee, setEmail, onStart, setCurrentStep, isSubmitting, fee}) => {
 
   // console.log(info)
   return (
@@ -110,7 +110,7 @@ const InviteUserForm = ({info, setToPayFee, setEmail, onStart, setCurrentStep, i
             <tbody className="divide-y divide-gray-200">
               <tr className="hover:bg-indigo-50 transition-colors duration-200">
                 <td className="py-4 px-6 text-gray-700 text-lg">Subtotal</td>
-                <td className="py-4 px-6 font-semibold text-indigo-600 text-lg">€800.00</td>
+                <td className="py-4 px-6 font-semibold text-indigo-600 text-lg">₦{info.price}</td>
               </tr>
               <tr className="hover:bg-indigo-50 transition-colors duration-200">
                 <td className="py-4 px-6 text-gray-700 text-lg">Escrow fee paid by</td>
@@ -118,28 +118,30 @@ const InviteUserForm = ({info, setToPayFee, setEmail, onStart, setCurrentStep, i
                   <div>
                     <select onChange={(e)=> setToPayFee(e.target.value)} defaultValue={'buyer'} className=' bg-transparent outline-none'>
                       <option value="buyer">Buyer</option>
-                      <option value="seller">Seller</option>
+                      {/* <option value="seller">Seller</option> */}
                     </select>
                   </div>
                 </td>
               </tr>
               <tr className="hover:bg-indigo-50 transition-colors duration-200">
                 <td className="py-4 px-6 text-gray-700 text-lg">Escrow fee</td>
-                <td className="py-4 px-6 font-semibold text-gray-900 text-lg">€50.00</td>
+                <td className="py-4 px-6 font-semibold text-gray-900 text-lg">₦{fee}</td>
               </tr>
               <tr className="hover:bg-indigo-50 transition-colors duration-200">
                 <td className="py-4 px-6 text-gray-700 text-lg">Buyer Price</td>
-                <td className="py-4 px-6 font-semibold text-indigo-600 text-lg">€850.00</td>
+                <td className="py-4 px-6 font-semibold text-indigo-600 text-lg">
+                  ₦{(Number(info.price) + Number(fee)).toLocaleString()}
+                </td>
               </tr>
               <tr className="hover:bg-indigo-50 transition-colors duration-200">
                 <td className="py-4 px-6 text-gray-700 text-lg">Seller Proceeds</td>
-                <td className="py-4 px-6 font-semibold text-gray-900 text-lg">€800.00</td>
+                <td className="py-4 px-6 font-semibold text-gray-900 text-lg">₦{info.price}</td>
               </tr>
             </tbody>
             <tfoot>
               <tr className="bg-gray-100">
                 <td className="py-4 px-6 text-sm text-gray-500" colSpan="2">
-                  All prices are in EUR. Taxes may apply.
+                  All prices are in NGN. Taxes may apply.
                 </td>
               </tr>
             </tfoot>

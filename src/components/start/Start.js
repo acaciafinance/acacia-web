@@ -199,6 +199,7 @@ const Start = () => {
             setToPayFee={setToPayFee}
             setCurrentStep={setCurrentStep}
             isSubmitting={isSubmitting}
+            fee={fee}
             onStart={onStart} />
         )}
       </div>
