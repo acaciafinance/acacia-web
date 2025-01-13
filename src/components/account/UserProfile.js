@@ -27,7 +27,7 @@ const UserProfile = ({userData}) => {
     const handleSave = () => {
       // Here you would add functionality to save the updated user data
       setIsEditing(false);
-      console.log("User data saved:", user);
+      // console.log("User data saved:", user);
     };
   
     // Render basic user profile information

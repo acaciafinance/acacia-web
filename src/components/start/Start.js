@@ -91,7 +91,7 @@ const Start = () => {
 
   
 
-  console.log(invitedTransaction)
+  // console.log(invitedTransaction)
 
 
 
@@ -148,20 +148,20 @@ const Start = () => {
   }
 
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
   };
 
 
   const handleAccept = async() => {
     // Handle accept transaction logic
     await acceptInvite(invitedTransaction?.tid, user?.email, user?._id)
-    console.log('Transaction accepted');
+    // console.log('Transaction accepted');
     setShowPopup(false);
   };
 
   const handleDecline = () => {
       // Handle decline transaction logic
-      console.log('Transaction declined');
+      // console.log('Transaction declined');
       setIsModalOpen(false);
   };
 

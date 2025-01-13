@@ -29,7 +29,7 @@ import { FadeLoader } from "react-spinners";
           setTransactions(res?.data?.transactions)
           setLoading(false)
 
-          console.log(res.data)
+          // console.log(res.data)
         } catch (error) {
           console.log(error)
           setLoading(false)

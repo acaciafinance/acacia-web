@@ -56,7 +56,7 @@ const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
     
       const handleFlutterPayment = useFlutterwave(config)
 
-      // console.log(userDetails)
+      // console.log(transaction?.seller?.bankDetails)
 
       // console.log(Date.now())
 
@@ -66,8 +66,8 @@ const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
 
       const handleTransfer = async () => {
         const transferData = {
-          bankCode: userDetails?.bankDetails?.bankCode, // Example for Access Bank
-          accountNumber: userDetails?.bankDetails?.accountNumber,
+          bankCode: transaction?.seller?.bankDetails?.bankCode, // Example for Access Bank
+          accountNumber: transaction?.seller?.bankDetails?.accountNumber,
           amount: transaction?.item?.price,
           userId: transaction?.seller?._id,
           tid: transaction?._id
@@ -75,7 +75,7 @@ const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
     
         try {
             const result = await initiateTransfer(transferData);
-            console.log("Transfer result:", result);
+            // console.log("Transfer result:", result);
             // Handle success notification, UI updates, etc.
         } catch (error) {
             console.error("Transfer error:", error);
@@ -97,7 +97,7 @@ const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
         try {
             const res = await handleDeliver(userDetails?._id, transaction?.tid )
             router.refresh()
-            console.log(res)
+            // console.log(res)
         } catch (error) {
             console.log(error)
         }

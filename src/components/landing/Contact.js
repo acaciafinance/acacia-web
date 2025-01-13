@@ -63,7 +63,7 @@ const Contact = () => {
       //   throw new Error('Failed to send the message. Please try again.');
       // }
 
-      console.log(response)
+      // console.log(response)
 
       setSuccessMessage('Your message has been sent successfully!');
       setFormData({ name: '', email: '', subject: '', message: '' });

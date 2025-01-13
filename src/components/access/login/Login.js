@@ -26,7 +26,7 @@ const Login = () => {
 
     
 
-    console.log(query)
+    // console.log(query)
 
     
     const handleSubmit = async(e)=> {
@@ -34,12 +34,12 @@ const Login = () => {
       try {
         setIsClicked(true)
         const res = await login({email, password}, dispatch)
-        console.log(res.data)
+        // console.log(res.data)
         if(res.status ===  200) {
           router.push(`/?${searchParams}`)
         }
       } catch (error) {
-        console.log(error)
+        // console.log(error)
         setError(error?.response?.data)
         setIsClicked(false)
       }

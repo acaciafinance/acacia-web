@@ -37,7 +37,7 @@ const SingleTransaction = () => {
         getTrx()
     }, [user, params])
 
-    console.log(transaction)
+    // console.log(transaction)
 
     const userRole = transaction?.buyerEmail === user?.email ? 'buyer' : 'seller';
     const transactionStatus = transaction?.status;
@@ -46,7 +46,7 @@ const SingleTransaction = () => {
     const hasDisbursementAccount = user?.bankDetails && Object.keys(user.bankDetails).length > 0; // Assumes this field exists in user object
     const showDisbursementWarning = userRole === 'seller' && !hasDisbursementAccount;
 
-    console.log(user)
+    // console.log(user)
 
 
     if(loading) {

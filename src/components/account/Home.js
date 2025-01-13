@@ -20,9 +20,9 @@ const Account = () => {
         try {
           const res = await getUserPaymentHistory(userData._id)
           setPaymentData(res)
-          console.log(res)
+          // console.log(res)
         } catch (error) {
-          console.log(error)
+          // console.log(error)
         }
       }
 

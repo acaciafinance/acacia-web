@@ -46,7 +46,7 @@ const SignUp = () => {
                 }
             }  
         } catch (error) {
-            console.log(error)
+            // console.log(error)
             setIsClicked(false)
         }
 
@@ -83,7 +83,7 @@ const SignUp = () => {
 
         if (errors.length === 0) {
             // Proceed with form submission or further processing
-            console.log('Form is valid');
+            // console.log('Form is valid');
             registerUser()
             // nextPage()
             // Reset form or redirect user

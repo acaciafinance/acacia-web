@@ -9,7 +9,7 @@ export const POST = async (req) => {
         // Prepare the payload
         const payload = {
             account_bank: bankCode, 
-            account_number: accountNumber, 
+            account_number: accountNumber.toString(), 
             amount: amount, 
             narration: "Acacia Payment Settlement", 
             currency: "NGN", 
@@ -19,6 +19,8 @@ export const POST = async (req) => {
                 tid: tid
             }
         }
+
+        // console.log(payload)
 
 
         const flw = new Flutterwave(process.env.FLUTTERWAVE_PUBLIC_KEY, process.env.FLUTTERWAVE_SECRET_KEY)

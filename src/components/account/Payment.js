@@ -69,9 +69,9 @@ const Payment = ({paymentData}) => {
                     setFetchErrorMsg("Account validation failed.")
                 }
 
-                console.log(response.data)
+                // console.log(response.data)
             } catch (error) {
-                console.log(error)
+                // console.log(error)
             }
           } else {
             setAccountName("");
@@ -83,7 +83,7 @@ const Payment = ({paymentData}) => {
 
     const handleSaveAccount = async () => {
         if (!bankName || !accountName || !accountNumber) {
-            console.log("All fields are required.");
+            // console.log("All fields are required.");
             return;
         }
         try {

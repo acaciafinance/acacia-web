@@ -35,7 +35,7 @@ export const acceptInvite = async (tid, userEmail, userId) => {
             userEmail
         });
         if (response.status === 200) {
-            console.log('hurray!!!')
+            // console.log('hurray!!!')
             // router.push(`/transaction/${response.data.tid}`);
         }
     } catch (error) {
