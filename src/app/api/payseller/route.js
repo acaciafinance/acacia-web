@@ -8,8 +8,8 @@ export const POST = async (req) => {
 
         // Prepare the payload
         const payload = {
-            account_bank: "044", 
-            account_number: "0690000040", 
+            account_bank: bankCode, 
+            account_number: accountNumber, 
             amount: amount, 
             narration: "Acacia Payment Settlement", 
             currency: "NGN", 
@@ -28,7 +28,7 @@ export const POST = async (req) => {
         if (response.status === "success") {
             return NextResponse.json(response, { status: 200 });
         } else {
-            return NextResponse.json({ message: data.message }, { status: response.status });
+            return NextResponse.json({ message: response?.message });
         }
     } catch (error) {
         console.error("Error initiating transfer:", error);
