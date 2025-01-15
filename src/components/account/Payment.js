@@ -200,6 +200,9 @@ const Payment = ({paymentData}) => {
                 {isAddingAccount && (
                     <div className="mt-6">
                     <h4 className="text-md font-semibold text-gray-800">Add Disbursement Account</h4>
+                    <p class="text-red-600 text-sm mt-3 md:text-base font-medium">
+                        Kindly add only commercial banks. Payouts to Microfinance Banks and Digital Wallets are not supported at this time.
+                    </p>
                     <div className="space-y-4 mt-4">
                       {/* Search Input for Banks */}
                       <div className="relative">
@@ -259,7 +262,7 @@ const Payment = ({paymentData}) => {
                         <label className="block text-sm font-medium text-gray-700">Account Name</label>
                         <input
                           type="text"
-                          value={accountName}
+                          value={accountName || (isLoading ? "Validating account..." : "")}
                           disabled
                           className="mt-1 p-2 border rounded-md w-full"
                         />

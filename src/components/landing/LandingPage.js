@@ -5,6 +5,7 @@ import Logo from '../template/Logo'
 import Footer from '../template/Footer'
 import Link from 'next/link'
 import Image from 'next/image'
+import FAQSection from './FaqSection'
 
 
 const products = [
@@ -216,6 +217,10 @@ const LandingPage = () => {
           </div>
         </div>
       </section> */}
+
+
+      {/* Section 4: FAQs */}
+      <FAQSection />
 
       {/* Contact CTA */}
       <section id="contact" className="py-20 bg-blue-900 text-white text-center">

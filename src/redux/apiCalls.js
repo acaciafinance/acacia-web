@@ -140,4 +140,13 @@ export const getUserPaymentHistory = async(userId)=> {
 }
 
 
+export const getStats = async () => {
+    try {
+        const res = await publicRequest.get('stats')
+        return res.data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 
