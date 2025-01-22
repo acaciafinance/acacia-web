@@ -5,6 +5,8 @@ import Link from 'next/link';
 import LogoWhite from './LogoWhite';
 
 const Footer = () => {
+
+  const links = "https://docs.google.com/forms/d/e/1FAIpQLSdLhGhdfN-0cklK9HP9myWuHDPeMkhx1V6dC69DRunDIb0ktw/viewform"
   return (
     <footer className='bg-gray-800 text-white py-8'>
       <div className='container mx-auto px-4'>
@@ -30,14 +32,15 @@ const Footer = () => {
 
           {/* Links in Groups */}
           <div className='grid grid-cols-2 md:grid-cols-3 gap-8'>
-            {/* <div>
-              <h4 className='font-semibold mb-3'>Company</h4>
+            <div>
+              <h4 className='font-semibold mb-3'>Business</h4>
               <ul className='space-y-2'>
-                <li><Link href='#' className='hover:text-teal-400'>About Us</Link></li>
-                <li><Link href='#' className='hover:text-teal-400'>Careers</Link></li>
-                <li><Link href='#' className='hover:text-teal-400'>Press</Link></li>
+                <li><Link href={links} target='_blank' className='hover:text-teal-400'>Funding</Link></li>
+                <li><Link href={links} className='hover:text-teal-400'>Risk Management</Link></li>
+                <li><Link href={links} className='hover:text-teal-400'>Liquidity and Trading</Link></li>
+                <li><Link href={links} className='hover:text-teal-400'>Trade Intelligence</Link></li>
               </ul>
-            </div> */}
+            </div>
             <div>
               <h4 className='font-semibold mb-3'>Support</h4>
               <ul className='space-y-2'>

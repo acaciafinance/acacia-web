@@ -44,9 +44,9 @@ const ProductModal = ({ product, onClose }) => {
           <h2 className="text-2xl font-bold mb-4 text-teal-800">{product.name}</h2>
           <p className="text-gray-600 mb-6">{product.details}</p>
           <div className="flex justify-end">
-            <Link href="/home/contact">
+            <Link href="https://docs.google.com/forms/d/e/1FAIpQLSdLhGhdfN-0cklK9HP9myWuHDPeMkhx1V6dC69DRunDIb0ktw/viewform">
               <button className="bg-blue-900 text-white px-4 py-2 rounded-md hover:bg-blue-700 mr-2">
-                Learn More
+                Get Started
               </button>
             </Link>
             <button onClick={onClose} className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300">
