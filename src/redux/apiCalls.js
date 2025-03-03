@@ -1,6 +1,7 @@
 import { publicRequest, userRequest } from "@/requestMethods"
 import { updateError, updateStart, updateSuccess } from "./userSlice"
 import axios from "axios"
+import { data } from "autoprefixer"
 // import { headers } from "next/headers"
 
 
@@ -117,10 +118,11 @@ export const initiateTransfer = async (transferData) => {
         const { data: response } = await axios.post("/api/payseller", transferData);
 
         console.log("Transfer successful:", response);
+        const { userId, tid } = transferData
 
-        if (response.status === "success") {
+        if (response?.data?.status === "success") {
             // Save payment in the database
-            await publicRequest.post("finance/save-payment", response.data);
+            await publicRequest.post("finance/save-payment", {response, userId, tid});
         }
 
         return response;

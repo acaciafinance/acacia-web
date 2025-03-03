@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MakePayment from './MakePayment';
 import DeliveryStatus from './DeliveryStatus';
 import CompleteTransaction from './CompleteTransaction';
@@ -20,6 +20,7 @@ import { useRouter } from 'next/navigation';
 const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
 
     const userDetails = useSelector(state => state.user.info)
+    const [loading, setLoading] = useState(false);
     const router = useRouter()
 
     const amount = userRole === 'buyer' && transaction.toPayFee === 'buyer'
@@ -30,6 +31,8 @@ const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
     const sellerAccountStatus = transaction?.seller?.bankDetails? true:false 
 
     // console.log(sellerAccountStatus)
+
+    // https://acaciafinance.net/transactions/61?status=successful&tx_ref=1740572947077&transaction_id=1756335689
 
     const config = {
         public_key: "FLWPUBK-59d89542e1f64ffd9f40b75a01ec8950-X",
@@ -119,23 +122,26 @@ const TransactionActions = ({ userRole, transactionStatus, transaction }) => {
 
       const handleComplete = async () => {
         try {
+          setLoading(true);
           // Call API to update transaction status to 'delivered'
-          await handleConfirmComplete(userDetails?._id, transaction?.tid);
           await handleTransfer()
+          await handleConfirmComplete(userDetails?._id, transaction?.tid);
+          setLoading(false);
           router.refresh()
           // Handle any additional UI changes, notifications, etc.
         } catch (error) {
           console.error("Error confirming delivery:", error);
+          setLoading(false);
         }
       };
 
 
 
     if (userRole === 'buyer') {
-        if (transactionStatus === 'pending') return <MakePayment handlePay={handlePay} />;
+        if (transactionStatus === 'pending') return <MakePayment userDetails={userDetails} transaction={transaction} amount={amount} />;
         if (transactionStatus === 'processing') return <DeliveryStatus />;
         if (transactionStatus === 'shipped') return <ConfirmDelivery onConfirmDelivery={handleConfirmDelivery} />;
-        if (transactionStatus === 'delivered') return <CompleteTransaction onComplete={handleComplete} sellerAccountStatus={sellerAccountStatus} />;
+        if (transactionStatus === 'delivered') return <CompleteTransaction onComplete={handleComplete} loading={loading} sellerAccountStatus={sellerAccountStatus} />;
         if (transactionStatus === 'completed') return <TransactionCompleted />;
     }
 

@@ -5,6 +5,7 @@ import { publicRequest, userRequest } from "@/requestMethods";
 import { updateSuccess } from "@/redux/userSlice";
 import { banks } from "./data/bankData";
 import axios from "axios";
+import Link from "next/link";
 
 
 const Payment = ({paymentData}) => {
@@ -63,8 +64,10 @@ const Payment = ({paymentData}) => {
                     account_bank: `${bankCode}`
                 });
 
-                if (response.data.status === 'success') {
-                    setAccountName(response?.data?.data?.account_name)
+                console.log(response.status)
+
+                if (response?.status === 200) {
+                    setAccountName(response?.data?.account_name)
                 } else {
                     setFetchErrorMsg("Account validation failed.")
                 }
@@ -79,7 +82,7 @@ const Payment = ({paymentData}) => {
         };
       
         validateAccount();
-      }, [accountNumber, bankName, bankCode, apiUrl]);
+      }, [accountNumber, bankName, bankCode]);
 
     const handleSaveAccount = async () => {
         if (!bankName || !accountName || !accountNumber) {
@@ -153,7 +156,7 @@ const Payment = ({paymentData}) => {
                             </tr>
                         </thead>
                         <tbody>
-                            {paymentData.map(transaction => (
+                            {paymentData?.map(transaction => (
                                 <tr key={transaction._id} className="border-b">
                                     <td className="p-2 text-center">{transaction?.type}</td>
                                     <td className="p-2 text-center">&#8358;{transaction.amount}</td>
@@ -164,13 +167,13 @@ const Payment = ({paymentData}) => {
                     </table>
                 ) : (
                     <div className="text-center mt-6">
-                        <p className="text-gray-600">No payment record found.</p>
-                        <button 
+                        <p className="text-gray-600 mb-4">No payment record found.</p>
+                        <Link 
                             className="mt-4 bg-indigo-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-indigo-600 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-all duration-300"
-                            onClick={startTransaction} // Replace this with your transaction initiation function
+                            href={'/'} // Replace this with your transaction initiation function
                         >
                             Start a Transaction
-                        </button>
+                        </Link>
                     </div>
                 )}
             </div>
@@ -268,6 +271,7 @@ const Payment = ({paymentData}) => {
                         />
                       </div>
                       <button
+                      disabled={!accountName || !bankName || !accountNumber}
                         onClick={handleSaveAccount}
                         className="mt-4 px-4 py-2 bg-blue-900 text-white rounded-md"
                       >

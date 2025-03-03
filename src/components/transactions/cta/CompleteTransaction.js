@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CompleteTransaction = ({ onComplete, sellerAccountStatus }) => {
+const CompleteTransaction = ({ onComplete, loading, sellerAccountStatus }) => {
   const handleComplete = () => {
     if (!sellerAccountStatus) {
       alert("The seller has not updated their bank account details. Please prompt the seller to provide this information before completing the transaction.");
@@ -17,12 +17,37 @@ const CompleteTransaction = ({ onComplete, sellerAccountStatus }) => {
       </p>
       <button
         onClick={handleComplete}
-        className={`px-4 py-2 mt-4 rounded-md text-white ${
-          sellerAccountStatus ? "bg-blue-600 hover:bg-blue-700" : "bg-gray-400 cursor-not-allowed"
+        className={`px-4 py-2 mt-4 rounded-md text-white flex items-center justify-center ${
+          sellerAccountStatus && !loading
+            ? "bg-blue-600 hover:bg-blue-700"
+            : "bg-gray-400 cursor-not-allowed"
         }`}
-        disabled={!sellerAccountStatus} // Disable the button if sellerAccountStatus is false
+        disabled={!sellerAccountStatus || loading} // Disable the button if sellerAccountStatus is false or loading is true
       >
-        Complete Transaction
+        {loading ? (
+          <svg
+            className="animate-spin h-5 w-5 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4l3-3-3-3v4a8 8 0 11-8 8z"
+            ></path>
+          </svg>
+        ) : (
+          "Complete Transaction"
+        )}
       </button>
       {!sellerAccountStatus &&<p className=' text-xs text-red-400 mt-3'>
         The seller has not updated their bank account details. Please prompt the seller to provide this information before completing the transaction.
