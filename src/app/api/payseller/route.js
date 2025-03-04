@@ -70,7 +70,22 @@ export const POST = async (req) => {
             }
         };
 
-        const recipientRes = await fetch("https://api.paystack.co/transferrecipient", {
+
+        const fetchWithTimeout = async (url, options, timeout = 30000) => {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeout);
+            
+            try {
+                const response = await fetch(url, { ...options, signal: controller.signal });
+                clearTimeout(timeoutId);
+                return response;
+            } catch (error) {
+                console.error(`Request to ${url} failed:`, error);
+                throw new Error("Request timeout or fetch failed");
+            }
+        };
+
+        const recipientRes = await fetchWithTimeout("https://api.paystack.co/transferrecipient", {
             method: "POST",
             headers: {
                 Authorization: `Bearer ${PAYSTACK_SECRET_KEY}`,
